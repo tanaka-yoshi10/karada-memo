@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'html2haml'
   gem 'license_finder'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
