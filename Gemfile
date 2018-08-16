@@ -8,6 +8,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'devise-i18n'
+gem 'haml-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
 gem 'rails-i18n', '~> 5.1'
@@ -19,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'html2haml'
   gem 'license_finder'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
