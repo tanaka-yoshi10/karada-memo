@@ -1,2 +1,12 @@
-%h1
-  = "#{current_user.nickname}さんの家族設定"
+%h1= "#{current_user.nickname}さんの家族設定"
+
+.row
+  .col-md-12
+    .li= link_to 'からだ登録', new_body_path
+    .p
+      = "からだの数：#{@family.bodies.count}"
+    %h3 からだ一覧
+    - @family.bodies.each do |body|
+      .p
+        = link_to body.nickname, body_path(body)
+

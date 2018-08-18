@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
 
     it '最大長のニックネームは有効であること' do
       user = FactoryBot.build(:user, nickname: 'a' * 50)
-      expect(user.valid?).to be_truthy
+      expect(user).to be_valid
     end
 
     it '最大長+1文字のニックネームは無効であること' do

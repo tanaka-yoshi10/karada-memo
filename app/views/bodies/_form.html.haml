@@ -1,0 +1,12 @@
+= form_for @body do |f|
+  - if @body.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@body.errors.count, "error")} prohibited this body from being saved:"
+      %ul
+        - @body.errors.full_messages.each do |message|
+          %li= message
+
+  = f.label :nickname
+  = f.text_field :nickname, class: 'form-control', autocomplete: 'off'
+
+  = f.submit class: 'btn btn-primary'
