@@ -1,11 +1,14 @@
 class User < ApplicationRecord
   belongs_to :family
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  validates :nickname, presence: true, length: { maximum: 50 }
+
   after_initialize :set_new_family,
                    if: ->(user) { user.family.nil? }
   after_destroy :destroy_family!,
                 unless: ->(user) { user.family.member? }
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
   private
 
