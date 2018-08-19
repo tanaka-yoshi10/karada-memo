@@ -4,8 +4,8 @@
     %nav
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li= link_to 'メモを見る', '#'
-          %li= link_to 'メモする', '#'
+          %li= link_to 'メモを見る', notes_path
+          %li= link_to 'メモする', new_note_path
           %li.dropdown
             %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown'}
               = current_user.nickname

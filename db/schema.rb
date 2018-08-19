@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_094636) do
+ActiveRecord::Schema.define(version: 2018_08_19_051845) do
 
   create_table "bodies", force: :cascade do |t|
     t.string "nickname", default: "", null: false
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2018_08_18_094636) do
   create_table "families", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text "detail"
+    t.integer "body_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "noted_at"
+    t.index ["body_id"], name: "index_notes_on_body_id"
   end
 
   create_table "users", force: :cascade do |t|

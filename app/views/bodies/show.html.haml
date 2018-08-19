@@ -1,7 +1,28 @@
 %h1= "#{@body.nickname}さんのからだメモ"
 
 %p
-  メモはまだありません。
+  = link_to 'メモを追加する', new_note_path(body_id: @body.id)
+
+
+- note_count = @body.notes.count
+- if note_count == 0
+  %p
+    メモはまだありません。
+- else
+  %table
+    %thead
+      %tr
+        %th noted_at
+        %th body
+        %th detail
+        %th
+    %tbody
+      - @body.notes.each do |note|
+        %tr
+          %td= note.noted_at
+          %td= note.body.nickname
+          %td= note.detail
+          %td= link_to 'Show', note
 
 %hr
 = link_to 'からだ情報の編集はこちらから', edit_body_path(@body)
