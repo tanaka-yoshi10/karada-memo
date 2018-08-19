@@ -1,0 +1,9 @@
+%h1= "#{@note.body.nickname}さんの#{@note.noted_at}のメモ"
+
+%p
+  %b Detail:
+  = @note.detail
+
+= link_to 'Edit', edit_note_path(@note)
+\|
+= link_to '戻る', :back

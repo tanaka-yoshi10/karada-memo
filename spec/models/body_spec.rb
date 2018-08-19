@@ -37,4 +37,14 @@ RSpec.describe Body, type: :model do
       expect(body2).to be_valid
     end
   end
+
+  describe 'からだを削除する' do
+    it 'ノートも一緒に削除すること' do
+      body = FactoryBot.create(:body, :with_notes)
+      original_count = body.notes.count
+      expect do
+        body.destroy!
+      end.to change(Note, :count).by(-original_count)
+    end
+  end
 end
