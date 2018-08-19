@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   }
   get 'profile', to: 'users#show'
   resource :family, only: %i[show destroy]
-
+  resources :bodies, except: :index
 end

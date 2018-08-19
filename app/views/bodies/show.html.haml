@@ -1,0 +1,7 @@
+%h1= "#{@body.nickname}さんのからだメモ"
+
+%p
+  メモはまだありません。
+
+%hr
+= link_to 'からだ情報の編集はこちらから', edit_body_path(@body)
