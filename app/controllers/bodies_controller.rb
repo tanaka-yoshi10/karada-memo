@@ -16,7 +16,7 @@ class BodiesController < ApplicationController
     @body = Body.new(body_params)
     @body.family = current_user.family
     if @body.save
-      redirect_to @body, notice: 'Body was successfully created.'
+      redirect_to family_url, notice: 'Body was successfully created.'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class BodiesController < ApplicationController
 
   def update
     if @body.update(body_params)
-      redirect_to @body, notice: 'Body was successfully updated.'
+      redirect_to family_url, notice: 'Body was successfully updated.'
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class BodiesController < ApplicationController
 
   def destroy
     @body.destroy
-    redirect_to family_path, notice: 'Body was successfully destroyed.'
+    redirect_to family_url, notice: 'Body was successfully destroyed.'
   end
 
   private

@@ -1,7 +1,10 @@
-%h1= 'からだ情報の登録'
-%h2= 'メモを残したい方の情報を登録してください。'
-
 .row
   .col-md-6.col-md-offset-3
+    .page-header
+      %h1
+        からだ情報の追加
+
     = render 'form'
+
+    %hr
     = link_to '戻る', family_path

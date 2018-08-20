@@ -6,13 +6,17 @@
         - @note.errors.full_messages.each do |message|
           %li= message
 
-  = f.label :body
-  = f.collection_select :body_id, current_user.family.bodies, :id, :nickname, prompt: true, class: 'form-control'
+  .form-group
+    = f.label :body_id
+    = f.collection_select :body_id, current_user.family.bodies, :id, :nickname, {prompt: true}, {class: 'form-control'}
 
-  = f.label :noted_at
-  = f.datetime_select :noted_at, class: 'form-control'
+  .form-group
+    = f.label :noted_at
+    = f.datetime_local_field :noted_at, class: 'form-control'
 
-  = f.label :detail
-  = f.text_area :detail, class: 'form-control'
+  .form-group
+    = f.label :detail
+    = f.text_area :detail, class: 'form-control', rows: 10
 
-  = f.submit class:'btn btn-primary'
+  .form-group
+    = f.submit class:'btn btn-primary'
