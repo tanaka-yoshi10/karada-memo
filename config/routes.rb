@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  get 'profile', to: 'users#show'
   resource :family, only: %i[show destroy]
   resources :bodies, except: :index
   resources :notes

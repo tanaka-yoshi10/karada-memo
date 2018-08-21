@@ -1,11 +1,15 @@
-%h1= 'からだ情報の編集'
-%h2= 'こちらで変更や削除ができます。'
-
 .row
   .col-md-6.col-md-offset-3
+    .page-header
+      %h1
+        からだ情報の編集
+
     = render 'form'
     %hr
-    %h3= 'からだ情報の削除'
+    %h3
+      からだ情報の削除
     %p
-      = button_to 'からだ情報削除', body_path(@body), data: { confirm: '本当によろしいですか？' }, method: :delete, class: 'btn btn-danger'
-    = link_to '戻る', :back
+      = button_to '削除する', body_path(@body), data: { confirm: '本当によろしいですか？' }, method: :delete, class: 'btn btn-danger'
+
+    %hr
+    = link_to '戻る', family_path

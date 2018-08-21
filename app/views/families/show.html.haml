@@ -1,12 +1,36 @@
-%h1= "#{current_user.nickname}さんの家族設定"
-
 .row
-  .col-md-12
-    .li= link_to 'からだ登録', new_body_path
-    .p
-      = "からだの数：#{@family.bodies.count}"
-    %h3 からだ一覧
-    - @family.bodies.each do |body|
-      .p
-        = link_to body.nickname, body_path(body)
+  .col-md-6.col-md-offset-3
+    .page-header
+      %h1
+        家族設定
+        %small
+          = "#{current_user.nickname}さん"
+    %h3
+      家族一覧
+    %table.table.table-striped.table-hover
+      %tr
+        %th
+          ニックネーム
+      - @family.members.each do |member|
+        %tr
+          %td= member.nickname
 
+    = link_to '+家族を招待する', '#'
+    %hr
+
+    %h3
+      からだ一覧
+    %table.table.table-striped.table-hover
+      %tr
+        %th
+          ニックネーム
+        %th
+          メモの数
+        %th
+      - @family.bodies.each do |body|
+        %tr
+          %td= body.nickname
+          %td= body.notes.count
+          %td= link_to '編集', edit_body_path(body)
+
+    = link_to '+からだを追加する', new_body_path
