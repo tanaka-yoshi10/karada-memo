@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true, length: { maximum: 50 }
 
   after_initialize :set_new_family,
-                   if: ->(user) { user.family.nil? }
+                   unless: ->(user) { user.family.present? }
   after_destroy :destroy_family!,
                 unless: ->(user) { user.family.member? }
 

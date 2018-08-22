@@ -1,0 +1,2 @@
+module Notes::LatestsHelper
+end

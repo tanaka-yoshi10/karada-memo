@@ -1,28 +1,24 @@
-%h1= "#{@body.nickname}さんのからだメモ"
+.row
+  .col-md-12
+    .page-header
+      %h1
+        = "#{@body.nickname}さんのからだメモ"
 
-%p
-  = link_to 'メモを追加する', new_note_path(body_id: @body.id)
-
-
-- note_count = @body.notes.count
-- if note_count == 0
-  %p
-    メモはまだありません。
+- if @notes.empty?
+  .row
+    = render 'notes/no_notes'
 - else
-  %table
-    %thead
-      %tr
-        %th noted_at
-        %th body
-        %th detail
-        %th
-    %tbody
-      - @body.notes.each do |note|
-        %tr
-          %td= note.noted_at
-          %td= note.body.nickname
-          %td= note.detail
-          %td= link_to 'Show', note
+  %nav.navbar.navbar-default
+    .container-fluid
+      .collapse.navbar-collapse
+        .navbar-form.navbar-left
+          .form-group
+            = label_tag 'year', '記録日'
+            = year_filter_select_tag(@body, @year, class: 'form-control')
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to '+メモを追加する', new_note_path(body_id: @body.id)
+  .row.row-eq-height
+    = (render partial: 'notes/thumbnail', collection: @notes, as: :note)
 
-%hr
-= link_to 'からだ情報の編集はこちらから', edit_body_path(@body)
+= paginate @notes

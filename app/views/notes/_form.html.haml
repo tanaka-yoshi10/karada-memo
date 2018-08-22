@@ -1,22 +1,19 @@
 = form_for @note do |f|
-  - if @note.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@note.errors.count, "error")} prohibited this note from being saved:"
-      %ul
-        - @note.errors.full_messages.each do |message|
-          %li= message
+  = error_explanation f.object
 
   .form-group
-    = f.label :body_id
+    = f.label :body_id, class: 'control-label'
     = f.collection_select :body_id, current_user.family.bodies, :id, :nickname, {prompt: true}, {class: 'form-control'}
 
   .form-group
-    = f.label :noted_at
+    = f.label :noted_at, class: 'control-label'
     = f.datetime_local_field :noted_at, class: 'form-control'
 
   .form-group
-    = f.label :detail
+    = f.label :detail, class: 'control-label'
     = f.text_area :detail, class: 'form-control', rows: 10
+    %span.help-block
+      = "#{Note::DETAIL_LENGTH_MAXIMUM}文字まで入力できます"
 
   .form-group
     = f.submit class:'btn btn-primary'

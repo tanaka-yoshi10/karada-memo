@@ -8,12 +8,14 @@
     %h3
       家族一覧
     %table.table.table-striped.table-hover
-      %tr
-        %th
-          ニックネーム
-      - @family.members.each do |member|
+      %thead
         %tr
-          %td= member.nickname
+          %th
+            ニックネーム
+      %tbody
+        - @family.members.each do |member|
+          %tr
+            %td= member.nickname
 
     = link_to '+家族を招待する', '#'
     %hr
@@ -21,16 +23,18 @@
     %h3
       からだ一覧
     %table.table.table-striped.table-hover
-      %tr
-        %th
-          ニックネーム
-        %th
-          メモの数
-        %th
-      - @family.bodies.each do |body|
+      %thead
         %tr
-          %td= body.nickname
-          %td= body.notes.count
-          %td= link_to '編集', edit_body_path(body)
+          %th
+            ニックネーム
+          %th
+            メモの数
+          %th
+      %tbody
+        - @family.bodies.each do |body|
+          %tr
+            %td= body.nickname
+            %td= body.notes.count
+            %td= link_to '編集', edit_body_path(body)
 
     = link_to '+からだを追加する', new_body_path
