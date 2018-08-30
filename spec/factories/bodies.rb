@@ -4,8 +4,12 @@ FactoryBot.define do
     association :family
 
     trait :with_notes do
-      after(:build) do |body|
-        body.notes << build_list(:note, 2)
+      transient do
+        note_count 5
+      end
+
+      after(:build) do |body, evaluator|
+        body.notes << build_list(:note, evaluator.note_count)
       end
     end
   end

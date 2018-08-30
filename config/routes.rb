@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   }
   resource :family, only: %i[show destroy]
   resources :bodies, except: :index
-  resources :notes
+
+  namespace :notes do
+    resources :latests, only: :index
+  end
+  resources :notes, except: :index
 end

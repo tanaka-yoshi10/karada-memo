@@ -3,7 +3,7 @@
   .container
     / Brand and toggle get grouped for better mobile display
     .navbar-header
-      %button.navbar-toggle{type: 'button', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false'}
+      %button.navbar-toggle{type: 'button', 'data-toggle': 'collapse', 'data-target': '#main-navbar-collapse', 'aria-expanded': 'false'}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
@@ -11,7 +11,7 @@
       = link_to 'からだメモ', root_path, class: 'navbar-brand'
 
     / Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    #main-navbar-collapse.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li
           = link_to root_path do
@@ -20,7 +20,7 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            = link_to notes_path do
+            = link_to notes_latests_path do
               =glyphicon(:list)
               メモを見る
           %li

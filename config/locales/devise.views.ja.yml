@@ -26,12 +26,6 @@ ja:
         unlock_token: "ロック解除用トークン"
         updated_at: "更新日"
         nickname: "ニックネーム"
-      body:
-        nickname: "ニックネーム"
-      note:
-        body_id: "からだ"
-        noted_at: "記録日時"
-        detail: "詳細"
     models:
       user: "ユーザ"
   users:
@@ -108,7 +102,6 @@ ja:
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
         sign_up: "アカウント登録"
-        sign_up_welcome: "からだメモへようこそ！"
       signed_up: "アカウント登録が完了しました。"
       signed_up_but_inactive: "ログインするためには、アカウントを有効化してください。"
       signed_up_but_locked: "アカウントが凍結されているためログインできません。"

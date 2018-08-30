@@ -1,0 +1,6 @@
+.row
+  .col-md-12
+    .page-header
+      %h1
+        最新のメモ
+= render partial: 'summary_of_body', collection: current_user.family.bodies, as: :body

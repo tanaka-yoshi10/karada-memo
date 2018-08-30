@@ -3,11 +3,6 @@ class NotesController < ApplicationController
   before_action :set_body, only: %i[new]
   before_action :set_note, only: %i[show edit update destroy]
 
-  def index
-    # FIXME: 現時点でビュー側で@notesは使われていない。扱いをあとで検討。
-    @notes = current_user.family.notes
-  end
-
   def show
   end
 
@@ -21,7 +16,7 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to @note, notice: 'Note was successfully created.'
+      redirect_to @note, success: 'メモを作成しました'
     else
       render :new
     end
@@ -29,7 +24,7 @@ class NotesController < ApplicationController
 
   def update
     if @note.update(note_params)
-      redirect_to @note, notice: 'Note was successfully updated.'
+      redirect_to @note, success: 'メモを更新しました'
     else
       render :edit
     end
@@ -37,7 +32,7 @@ class NotesController < ApplicationController
 
   def destroy
     @note.destroy
-    redirect_to @note.body, notice: 'Note was successfully destroyed.'
+    redirect_to @note.body, success: 'メモを削除しました'
   end
 
   private

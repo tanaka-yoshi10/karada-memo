@@ -58,4 +58,10 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # タイムゾーンの設定(開発環境用)
+  # 開発PCは日本国内のためアプリケーションのタイムゾーンは日本にする。
+  config.time_zone = 'Asia/Tokyo'
+  # DBはSQLite3を使い、そのタイムゾーンはUTCのためこちらはUTCに。
+  config.active_record.default_timezone = :utc
 end
