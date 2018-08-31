@@ -17,8 +17,29 @@
           %tr
             %td= member.nickname
 
-    = link_to '+家族を招待する', '#'
+    = link_to '+家族を招待する', new_user_invitation_path
     %hr
+
+    - if @family.invitee?
+      %h5
+        現在招待中の方
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th
+              メールアドレス
+            %th
+              招待日時
+            %th
+              操作
+        %tbody
+          - @family.invitees.each do |member|
+            %tr
+              %td= member.email
+              %td= member.invitation_sent_at
+              %td= link_to 'キャンセル', member, method: :delete,
+                data: { confirm: 'よろしいですか？' }
+      %hr
 
     %h3
       からだ一覧
@@ -30,6 +51,7 @@
           %th
             メモの数
           %th
+            操作
       %tbody
         - @family.bodies.each do |body|
           %tr

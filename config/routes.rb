@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    invitations: 'users/invitations'
   }
-  resource :family, only: %i[show destroy]
+  resources :users, only: :destroy
+
+  resource :family, only: :show
+
   resources :bodies, except: :index
 
   namespace :notes do
