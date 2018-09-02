@@ -11,8 +11,5 @@ Rails.application.routes.draw do
 
   resources :bodies, except: :index
 
-  namespace :notes do
-    resources :latests, only: :index
-  end
-  resources :notes, except: :index
+  resources :notes
 end
