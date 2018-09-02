@@ -17,3 +17,7 @@ FactoryBot.create(:body, :with_notes, family: test1.family, note_count: 0)
 FactoryBot.create(:body, :with_notes, family: test1.family, note_count: 3)
 FactoryBot.create(:body, :with_notes, family: test1.family, note_count: 20)
 puts_user_info test1
+
+test2 = FactoryBot.create(:user, email: 'test2@example.com')
+FactoryBot.create(:body, :with_notes, family: test2.family, note_count: 10)
+puts_user_info test2

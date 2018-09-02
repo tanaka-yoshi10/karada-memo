@@ -7,14 +7,6 @@ class FamiliesController < ApplicationController
   def show
   end
 
-  def destroy
-    @family.destroy
-    respond_to do |format|
-      format.html { redirect_to families_url, success: '家族を削除しました' }
-      format.json { head :no_content }
-    end
-  end
-
   private
 
   def set_family
