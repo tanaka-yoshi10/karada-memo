@@ -57,6 +57,12 @@ RSpec.describe User, type: :model do
       found_user = User.find(user.id)
       expect(found_user.family).to eq user.family
     end
+
+    it 'selectで最少のidだけに限定して、ユーザーモデルを取得してもインスタンスが作られること #34' do
+      user = FactoryBot.create(:user)
+      found_user = User.select(:id).find(user.id)
+      expect(found_user.id).to eq user.id
+    end
   end
 
   describe 'ユーザーを削除する' do

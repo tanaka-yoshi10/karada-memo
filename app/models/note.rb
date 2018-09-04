@@ -6,7 +6,7 @@ class Note < ApplicationRecord
   validates :noted_at, presence: true
 
   after_initialize :set_default_noted_at,
-                   unless: ->(note) { note.noted_at.present? }
+                   if: ->(note) { note.respond_to?(:noted_at) && note.noted_at.blank? }
 
   default_scope { order(noted_at: :desc) }
 

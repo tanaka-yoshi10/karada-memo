@@ -39,5 +39,11 @@ RSpec.describe Note, type: :model do
         expect(note.noted_at).to eq yesterday
       end
     end
+
+    it 'selectで最少のidだけに限定して、ノートlモデルを取得してもインスタンスが作られること #34' do
+      note = FactoryBot.create(:note)
+      found_note = Note.select(:id).find(note.id)
+      expect(found_note.id).to eq note.id
+    end
   end
 end
