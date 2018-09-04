@@ -85,4 +85,17 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '管理者権限を持つか判定する' do
+    it '管理者権限があるユーザーならtrueを返すこと' do
+      user = FactoryBot.build(:user)
+      user.add_role :admin
+      expect(user).to be_admin
+    end
+
+    it '管理者権限がないユーザーならfalseを返すこと' do
+      user = FactoryBot.build(:user)
+      expect(user).not_to be_admin
+    end
+  end
 end

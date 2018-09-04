@@ -27,7 +27,7 @@ ja:
         updated_at: "更新日"
         nickname: "ニックネーム"
     models:
-      user: "ユーザ"
+      user: "ユーザー"
   users:
     confirmations:
       confirmed: "アカウントを登録しました。"

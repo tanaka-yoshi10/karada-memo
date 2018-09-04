@@ -41,7 +41,7 @@ class NotesController < ApplicationController
   private
 
   def set_body
-    @body = current_user.family.bodies.find(params[:body_id]) if params[:body_id].present?
+    @body = current_user.family.bodies.find_by(id: params[:body_id])
   end
 
   def set_note

@@ -2,7 +2,7 @@
 
 class FamiliesController < ApplicationController
   before_action :authenticate_user!, only: :show
-  before_action :set_family, only: %i[show destroy]
+  before_action :set_family, only: %i[show]
 
   def show
   end
@@ -10,7 +10,6 @@ class FamiliesController < ApplicationController
   private
 
   def set_family
-    @family = current_user.family || Family.find(params[:id])
+    @family = current_user.family
   end
-
 end

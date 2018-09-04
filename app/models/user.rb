@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   belongs_to :family
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -14,8 +15,8 @@ class User < ApplicationRecord
   scope :joined_to_family, -> { no_active_invitation }
   scope :invited_to_family, -> { invitation_not_accepted }
 
-  def can_destroy?(other_user)
-    family == other_user.family
+  def admin?
+    has_role? :admin
   end
 
   private
