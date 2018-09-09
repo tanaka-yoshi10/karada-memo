@@ -5,7 +5,7 @@ class Body < ApplicationRecord
                        uniqueness: { scope: :family }
 
   def notes?
-    !notes.empty?
+    notes.any?
   end
 
   def years_noted

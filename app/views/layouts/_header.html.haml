@@ -34,7 +34,16 @@
             %ul.dropdown-menu
               %li= link_to 'アカウント', edit_user_registration_path
               %li= link_to '家族設定', family_path
+              - if current_user.admin?
+                %li.divider{role: 'separator'}
+                %li
+                  = link_to admin_root_path, target: '_blank' do
+                    システム管理
+                    =glyphicon('new-window')
               %li.divider{role: 'separator'}
               %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
         - else
-          %li= link_to 'ログイン', new_user_session_path
+          %li
+            = link_to new_user_session_path do
+              =glyphicon('log-in')
+              ログイン
