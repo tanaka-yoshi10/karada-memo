@@ -1,4 +1,6 @@
 module NotesHelper
+  SUMMARY_NOTES_SIZE = 3
+
   def year_filter_select_tag(body, year = nil, options = {})
     select_tag(:year,
                options_for_select(year_filter_options(body),

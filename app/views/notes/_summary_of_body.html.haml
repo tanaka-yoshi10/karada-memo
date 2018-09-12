@@ -1,9 +1,6 @@
 .row
   .col-md-12
-    - note_count = body.notes.count
-    %h3= link_to "#{body.nickname} (#{note_count}メモ)", body
+    %h3= link_to "#{body.nickname} (#{body.notes.size}メモ)", body
     .row
-      = (render partial: 'thumbnail', collection: body.notes.latest(3), as: :note) || (render 'no_notes')
-    - if note_count > 3
-      %p.text-right
-        = link_to '続きを見る...', body
+      = (render partial: 'thumbnail', collection: body.notes.latest(NotesHelper::SUMMARY_NOTES_SIZE), as: :note) || (render 'no_notes')
+    %p.text-right= link_to '続きを見る...', body if body.notes.size > NotesHelper::SUMMARY_NOTES_SIZE
