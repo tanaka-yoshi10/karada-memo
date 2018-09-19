@@ -109,6 +109,6 @@ Rails.application.configure do
 
   # タイムゾーンの設定
   config.time_zone = 'Asia/Tokyo'
-  # PostgreSQLのタイムゾーンはUTCのためこちらはUTCに。
+  # HerokuのPostgreSQLのタイムゾーンは、デフォルトでUTCのためこちらは:utcにする。
   config.active_record.default_timezone = :utc
 end

@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'pundit'
 gem 'rails-i18n', '~> 5.1'
@@ -32,7 +33,6 @@ group :development, :test do
   gem 'license_finder'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -52,10 +52,6 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'chromedriver-helper'
   gem 'selenium-webdriver'
-end
-
-group :production do
-  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

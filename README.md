@@ -8,7 +8,7 @@ Sorry, this document is Japanese only
 
 * Ruby 2.5.1
 * Ruby on Rails 5.2.0
-* PostgreSQL (Production利用時のみ)
+* PostgreSQL 10.4
 
 ## Setup
 
