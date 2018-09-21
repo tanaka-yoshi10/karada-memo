@@ -1,5 +1,6 @@
 class Note < ApplicationRecord
   DETAIL_LENGTH_MAXIMUM = 1000
+  paginates_per 6
 
   belongs_to :body
   validates :detail, length: { maximum: DETAIL_LENGTH_MAXIMUM }

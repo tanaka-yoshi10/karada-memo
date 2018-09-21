@@ -46,4 +46,11 @@ RSpec.describe Note, type: :model do
       expect(found_note.id).to eq note.id
     end
   end
+
+  describe 'ページング用の集合を返す' do
+    it 'デフォルトでは6つのメモを返す' do
+      7.times { FactoryBot.create(:note) }
+      expect(Note.all.page.size).to eq 6
+    end
+  end
 end

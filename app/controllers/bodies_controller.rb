@@ -4,7 +4,7 @@ class BodiesController < ApplicationController
   before_action :set_year, only: %i[show]
 
   def show
-    @notes = @body.notes.noted_in(@year).page(params[:page]).per(6)
+    @notes = @body.notes.noted_in(@year).page params[:page]
   end
 
   def new
