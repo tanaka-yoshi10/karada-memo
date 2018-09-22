@@ -1,7 +1,7 @@
 class BodiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_body, only: %i[show edit update destroy]
-  before_action :set_year, only: %i[show]
+  before_action :set_year, only: :show
 
   def show
     @notes = @body.notes.noted_in(@year).page params[:page]

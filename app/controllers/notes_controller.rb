@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_body, only: %i[new]
+  before_action :set_body, only: :new
   before_action :set_note, only: %i[show edit update destroy]
 
   def index
