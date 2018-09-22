@@ -17,7 +17,9 @@
           %tr
             %td= member.nickname
 
-    = link_to '+家族を招待する', new_user_invitation_path
+    = link_to new_user_invitation_path do
+      = fa_icon :plus, text: '家族を招待する'
+
     %hr
 
     - if @family.invitee?
@@ -59,4 +61,5 @@
             %td= body.notes.count
             %td= link_to '編集', edit_body_path(body)
 
-    = link_to '+からだを追加する', new_body_path
+    = link_to new_body_path do
+      = fa_icon :plus, text: 'からだを追加する'

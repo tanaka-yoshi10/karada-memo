@@ -17,7 +17,8 @@
             = year_filter_select_tag(@body, @year, class: 'form-control')
         %ul.nav.navbar-nav.navbar-right
           %li
-            = link_to '+メモを追加する', new_note_path(body_id: @body.id)
+            = link_to new_note_path(body_id: @body.id) do
+              = fa_icon :plus, text: 'メモを追加する'
   .row.row-eq-height
     = (render partial: 'notes/thumbnail', collection: @notes, as: :note)
 
