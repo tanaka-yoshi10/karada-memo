@@ -32,7 +32,7 @@ class BodiesController < ApplicationController
   end
 
   def destroy
-    @body.destroy
+    @body.destroy!
     redirect_to family_url, success: 'からだを削除しました'
   end
 

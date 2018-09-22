@@ -34,7 +34,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.destroy
+    @note.destroy!
     redirect_to @note.body, success: 'メモを削除しました'
   end
 
