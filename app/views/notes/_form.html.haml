@@ -13,7 +13,7 @@
     = f.label :detail, class: 'control-label'
     = f.text_area :detail, class: 'form-control', rows: 10
     %span.help-block
-      = "#{Note::DETAIL_LENGTH_MAXIMUM}文字まで入力できます"
+      #{Note::DETAIL_LENGTH_MAXIMUM}文字まで入力できます
 
   .form-group
     = f.submit class:'btn btn-primary'

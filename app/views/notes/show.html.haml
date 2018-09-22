@@ -2,7 +2,7 @@
   .col-md-12
     .page-header
       %h1
-        = "#{@note.noted_at}"
+        #{@note.noted_at}
         %small
           = link_to "#{@note.body.nickname}さん", body_path(@note.body)
           のメモ
