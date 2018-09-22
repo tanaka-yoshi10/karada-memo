@@ -15,8 +15,7 @@ class BodiesController < ApplicationController
   end
 
   def create
-    @body = Body.new(body_params)
-    @body.family = current_user.family
+    @body = current_user.family.bodies.build(body_params)
     if @body.save
       redirect_to family_url, success: 'からだを作成しました'
     else
