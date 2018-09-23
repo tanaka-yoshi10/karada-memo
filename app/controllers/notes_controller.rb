@@ -18,6 +18,9 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+    unless current_user.family.bodies.exists?(@note.body_id)
+      @note.body = nil
+    end
     if @note.save
       redirect_to @note, success: 'メモを作成しました'
     else
@@ -26,7 +29,11 @@ class NotesController < ApplicationController
   end
 
   def update
-    if @note.update(note_params)
+    @note.attributes = note_params
+    unless current_user.family.bodies.exists?(@note.body_id)
+      @note.body = nil
+    end
+    if @note.save
       redirect_to @note, success: 'メモを更新しました'
     else
       render :edit
