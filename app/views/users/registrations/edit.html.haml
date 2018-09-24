@@ -1,5 +1,5 @@
-.row
-  .col-md-6.col-md-offset-3
+.row.justify-content-center
+  .col-6
     .page-header
       %h1
         = t('.title')
@@ -8,31 +8,34 @@
       = devise_error_messages!
 
       .form-group
-        = f.label :nickname, class: 'control-label'
+        = f.label :nickname
         = f.text_field :nickname, class: 'form-control'
 
       .form-group
-        = f.label :email, class: 'control-label'
+        = f.label :email
         = f.email_field :email, class: 'form-control', autocomplete: 'email'
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           %div= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
 
       .form-group
-        = f.label :password, class: 'control-label'
-        %i
-          (#{t('.leave_blank_if_you_don_t_want_to_change_it')})
+        = f.label :password
+        %small
+          %i
+            (#{t('.leave_blank_if_you_don_t_want_to_change_it')})
         = f.password_field :password, class: 'form-control'
         - if @minimum_password_length
-          %em= t('devise.shared.minimum_password_length', count: @minimum_password_length)
+          %small.form-text.text-muted
+            = t('devise.shared.minimum_password_length', count: @minimum_password_length)
 
       .form-group
-        = f.label :password_confirmation, class: 'control-label'
+        = f.label :password_confirmation
         = f.password_field :password_confirmation, class: 'form-control'
 
       .form-group
-        = f.label :current_password, class: 'control-label'
-        %i
-          (#{t('.we_need_your_current_password_to_confirm_your_changes')})
+        = f.label :current_password
+        %small
+          %i
+            (#{t('.we_need_your_current_password_to_confirm_your_changes')})
         = f.password_field :current_password, class: 'form-control'
 
       .form-group

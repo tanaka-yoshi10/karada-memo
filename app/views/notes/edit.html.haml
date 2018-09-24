@@ -1,5 +1,5 @@
-.row
-  .col-md-6.col-md-offset-3
+.row.justify-content-center
+  .col-6
     .page-header
       %h1
         メモの編集
@@ -11,4 +11,3 @@
       メモの削除
     %p
       = button_to '削除する', note_path(@note), data: { confirm: '本当によろしいですか？' }, method: :delete, class: 'btn btn-danger'
-
