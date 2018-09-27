@@ -4,21 +4,10 @@
       %h1
         = t 'devise.invitations.edit.header'
 
-    = form_for resource, as: resource_name, url: invitation_path(resource_name), html: { :method => :put } do |f|
-      = devise_error_messages!
-      = f.hidden_field :invitation_token, readonly: true
-      .form-group
-        = f.text_field :nickname, class: 'form-control',
-          placeholder: t('activerecord.attributes.user.nickname')
+    = minimal_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f|
+      = f.input :invitation_token, as: :hidden
+      = f.input :nickname
       - if f.object.class.require_password_on_accepting
-        .form-group
-          = f.password_field :password, class: 'form-control',
-            placeholder: t('activerecord.attributes.user.password')
-          - if @minimum_password_length
-            %small.form-text.text-muted
-              = t('users.shared.minimum_password_length', count: @minimum_password_length)
-        .form-group
-          = f.password_field :password_confirmation, class: 'form-control',
-            placeholder: t('activerecord.attributes.user.password_confirmation')
-
-      %p= f.submit t('devise.invitations.edit.submit_button'), class: 'btn btn-primary'
+        = f.input :password, hint: password_length_hint(@minimum_password_length)
+        = f.input :password_confirmation
+      = f.button :submit, t('devise.invitations.edit.submit_button'), class: 'btn-primary'

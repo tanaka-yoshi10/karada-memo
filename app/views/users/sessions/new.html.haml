@@ -3,23 +3,10 @@
     .page-header
       %h1
         = t('.sign_in')
-
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = devise_error_messages!
-
-      .form-group
-        = f.email_field :email, class: 'form-control', autocomplete: 'email', placeholder: t('activerecord.attributes.user.email')
-
-      .form-group
-        = f.password_field :password, class: 'form-control', placeholder: t('activerecord.attributes.user.password')
-
-      .form-group.form-check
-        - if devise_mapping.rememberable?
-          = f.check_box :remember_me, class: 'form-check-input'
-          = f.label :remember_me, class: 'form-check-label'
-
-      .form-group
-        = f.submit t('.sign_in'), class: 'btn btn-primary'
-
-      %div
-        = render 'users/shared/links'
+    = minimal_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.input :email, input_html: {autocomplete: 'email'}
+      = f.input :password
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+      = f.button :submit, t('.sign_in'), class: 'btn-primary'
+    %div
+      = render 'users/shared/links'
