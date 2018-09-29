@@ -1,49 +1,36 @@
 / Navigation
-%nav.navbar.navbar-inverse.navbar-fixed-top
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
   .container
     / Brand and toggle get grouped for better mobile display
-    .navbar-header
-      %button.navbar-toggle{type: 'button', 'data-toggle': 'collapse', 'data-target': '#main-navbar-collapse', 'aria-expanded': 'false'}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to 'からだメモ', root_path, class: 'navbar-brand'
+    = link_to 'からだメモ', root_path, class: 'navbar-brand'
+    %button.navbar-toggler{type: 'button', 'data-toggle': 'collapse', 'data-target': '#main-navbar-collapse', 'aria-expanded': 'false', 'aria-label': 'ナビゲーションの切替' }
+      %span.navbar-toggler-icon
 
     / Collect the nav links, forms, and other content for toggling
     #main-navbar-collapse.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          = link_to root_path do
-            =glyphicon(:home)
-            ホーム
-      %ul.nav.navbar-nav.navbar-right
+      %ul.navbar-nav.mr-auto
+        %li.nav-item
+          = link_to root_path, class: 'nav-link' do
+            = fa_icon 'home', text: 'ホーム'
+      %ul.navbar-nav
         - if user_signed_in?
-          %li
-            = link_to notes_path do
-              =glyphicon(:list)
-              メモを見る
-          %li
-            =link_to new_note_path do
-              =glyphicon(:pencil)
-              メモする
-          %li.dropdown
-            %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'}
+          %li.nav-item
+            = link_to notes_path, class: 'nav-link' do
+              = fa_icon 'sticky-note', text: 'メモを見る'
+          %li.nav-item
+            =link_to new_note_path, class: 'nav-link' do
+              = fa_icon 'edit', text: 'メモする'
+          %li.nav-item.dropdown
+            %a#navbar-dropdown.nav-link.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'}
               = current_user.nickname
-              %span.caret
-            %ul.dropdown-menu
-              %li= link_to 'アカウント', edit_user_registration_path
-              %li= link_to '家族設定', family_path
+            .dropdown-menu{'aria-labelledby': 'navbar-dropdown'}
+              = link_to 'アカウント', edit_user_registration_path, class: 'dropdown-item'
+              = link_to '家族設定', family_path, class: 'dropdown-item'
               - if current_user.admin?
-                %li.divider{role: 'separator'}
-                %li
-                  = link_to admin_root_path, target: '_blank' do
-                    システム管理
-                    =glyphicon('new-window')
-              %li.divider{role: 'separator'}
-              %li= link_to 'ログアウト', destroy_user_session_path, method: :delete
+                .dropdown-divider
+                = link_to 'サイト管理', admin_root_path, class: 'dropdown-item', target: '_blank'
+              .dropdown-divider
+              = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
         - else
-          %li
-            = link_to new_user_session_path do
-              =glyphicon('log-in')
-              ログイン
+          %li.nav-item
+            = link_to 'ログイン', new_user_session_path, class: 'nav-link'

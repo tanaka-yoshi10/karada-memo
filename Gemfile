@@ -6,7 +6,7 @@ gem 'rails', '~> 5.2.0'
 
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap', '~> 4.1.3'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.4'
 gem 'devise-i18n'

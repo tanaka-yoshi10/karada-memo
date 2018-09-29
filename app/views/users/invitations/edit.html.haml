@@ -1,5 +1,5 @@
-.row
-  .col-md-offset-4.col-md-4
+.row.justify-content-center
+  .col-4
     .page-header
       %h1
         = t 'devise.invitations.edit.header'
@@ -15,7 +15,7 @@
           = f.password_field :password, class: 'form-control',
             placeholder: t('activerecord.attributes.user.password')
           - if @minimum_password_length
-            %span.help-block
+            %small.form-text.text-muted
               = t('users.shared.minimum_password_length', count: @minimum_password_length)
         .form-group
           = f.password_field :password_confirmation, class: 'form-control',

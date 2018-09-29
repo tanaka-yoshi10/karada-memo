@@ -1,5 +1,5 @@
-.row
-  .col-md-6.col-md-offset-3
+.row.justify-content-center
+  .col-6
     .page-header
       %h1
         家族設定
@@ -10,12 +10,11 @@
     %table.table.table-striped.table-hover
       %thead
         %tr
-          %th
-            ニックネーム
+          %th{scope: 'col'} ニックネーム
       %tbody
         - @family.members.each do |member|
           %tr
-            %td= member.nickname
+            %td{scope: 'row'}= member.nickname
 
     = link_to new_user_invitation_path do
       = fa_icon :plus, text: '家族を招待する'
@@ -28,16 +27,13 @@
       %table.table.table-striped.table-hover
         %thead
           %tr
-            %th
-              メールアドレス
-            %th
-              招待日時
-            %th
-              操作
+            %th{scope: 'col'} メールアドレス
+            %th{scope: 'col'} 招待日時
+            %th{scope: 'col'} 操作
         %tbody
           - @family.invitees.each do |member|
             %tr
-              %td= member.email
+              %th{scope: 'row'}= member.email
               %td= member.invitation_sent_at
               %td= link_to 'キャンセル', member, method: :delete,
                 data: { confirm: 'よろしいですか？' }
@@ -48,16 +44,13 @@
     %table.table.table-striped.table-hover
       %thead
         %tr
-          %th
-            ニックネーム
-          %th
-            メモの数
-          %th
-            操作
+          %th{scope: 'col'} ニックネーム
+          %th{scope: 'col'} メモの数
+          %th{scope: 'col'} 操作
       %tbody
         - @family.bodies.each do |body|
           %tr
-            %td= body.nickname
+            %td{scope: 'row'}= body.nickname
             %td= body.notes.count
             %td= link_to '編集', edit_body_path(body)
 
