@@ -1,19 +1,8 @@
-= form_for @note do |f|
-  = error_explanation f.object
-
-  .form-group
-    = f.label :body_id
-    = f.collection_select :body_id, current_user.family.bodies, :id, :nickname, {prompt: true}, {class: 'form-control'}
-
-  .form-group
-    = f.label :noted_at
-    = f.datetime_local_field :noted_at, class: 'form-control'
-
-  .form-group
-    = f.label :detail
-    = f.text_area :detail, class: 'form-control', rows: 10
-    %small.form-text.text-muted
-      #{Note::DETAIL_LENGTH_MAXIMUM}文字まで入力できます
-
-  .form-group
-    = f.submit class:'btn btn-primary'
+= simple_form_for @note do |f|
+  -# :body_idはモデル未定義の値であるため、明示的にrequired:trueを指定して必須であること示す
+  = f.input :body_id, required: true, collection: current_user.family.bodies,
+    label_method: :nickname, value_method: :id, prompt: true
+  = f.input :noted_at, html5: true
+  = f.input :detail, hint: "#{Note::DETAIL_LENGTH_MAXIMUM}文字まで入力できます",
+    input_html: {rows: 10}
+  = f.button :submit, class: 'btn-primary'

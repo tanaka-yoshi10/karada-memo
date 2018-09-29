@@ -4,42 +4,15 @@
       %h1
         = t('.title')
 
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      = devise_error_messages!
-
-      .form-group
-        = f.label :nickname
-        = f.text_field :nickname, class: 'form-control'
-
-      .form-group
-        = f.label :email
-        = f.email_field :email, class: 'form-control', autocomplete: 'email'
-        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-          %div= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
-
-      .form-group
-        = f.label :password
-        %small
-          %i
-            (#{t('.leave_blank_if_you_don_t_want_to_change_it')})
-        = f.password_field :password, class: 'form-control'
-        - if @minimum_password_length
-          %small.form-text.text-muted
-            = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-
-      .form-group
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: 'form-control'
-
-      .form-group
-        = f.label :current_password
-        %small
-          %i
-            (#{t('.we_need_your_current_password_to_confirm_your_changes')})
-        = f.password_field :current_password, class: 'form-control'
-
-      .form-group
-        = f.submit t('.update'), class: 'btn btn-primary'
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = f.input :nickname
+      = f.input :email, input_html: {autocomplete: 'email'}
+      = f.input :password, hint: password_length_hint(@minimum_password_length),
+        placeholder: "(#{t('.leave_blank_if_you_don_t_want_to_change_it')})"
+      = f.input :password_confirmation
+      = f.input :current_password,
+        placeholder: "(#{t('.we_need_your_current_password_to_confirm_your_changes')})"
+      = f.button :submit, t('.update'), class: 'btn-primary'
 
     %hr
     %h3= t('.cancel_my_account')
