@@ -4,14 +4,12 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          invite_for: 24.hours
-
   validates :nickname, presence: true, length: { maximum: 50 }
-
   after_initialize :set_new_family,
                    if: ->(user) { user.respond_to?(:family_id) && user.family.blank? }
   after_destroy :destroy_family!,
                 unless: ->(user) { user.family.member? }
-
+  default_scope { order(:nickname) }
   scope :joined_to_family, -> { no_active_invitation }
   scope :invited_to_family, -> { invitation_not_accepted }
 

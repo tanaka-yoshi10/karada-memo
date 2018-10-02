@@ -3,6 +3,7 @@ class Body < ApplicationRecord
   has_many :notes, dependent: :destroy
   validates :nickname, presence: true, length: { maximum: 50 },
                        uniqueness: { scope: :family }
+  default_scope { order(:nickname) }
 
   def notes?
     notes.any?

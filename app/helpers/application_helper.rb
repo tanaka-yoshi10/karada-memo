@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def glyphicon(name)
-    tag :span, class: "glyphicon glyphicon-#{name}", 'aria-hidden': 'true'
-  end
-
   def error_explanation(object_with_errors)
     return if object_with_errors.errors.empty?
 

@@ -1,14 +1,11 @@
 class Note < ApplicationRecord
   DETAIL_LENGTH_MAXIMUM = 1000
   paginates_per 6
-
   belongs_to :body
   validates :detail, length: { maximum: DETAIL_LENGTH_MAXIMUM }
   validates :noted_at, presence: true
-
   after_initialize :set_default_noted_at,
                    if: ->(note) { note.respond_to?(:noted_at) && note.noted_at.blank? }
-
   default_scope { order(noted_at: :desc) }
 
   scope :noted_in, ->(year) do

@@ -4,8 +4,7 @@
       %h1
         #{@note.noted_at}
         %small
-          = link_to "#{@note.body.nickname}さん", body_path(@note.body)
-          のメモ
+          = link_to "#{@note.body.nickname}さんのメモ", body_notes_path(@note.body)
 .row
   .col
     %img.img-fluid{src: 'http://placehold.it/700x400', alt: ''}
