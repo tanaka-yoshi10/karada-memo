@@ -1,10 +1,9 @@
 class BodiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_body, only: %i[show edit update destroy]
-  before_action :set_year, only: :show
 
-  def show
-    @notes = @body.notes.noted_in(@year).page params[:page]
+  def index
+    @bodies = current_user.family.bodies
   end
 
   def new
@@ -40,10 +39,6 @@ class BodiesController < ApplicationController
 
   def set_body
     @body = current_user.family.bodies.find(params[:id])
-  end
-
-  def set_year
-    @year = params[:year]
   end
 
   def body_params
