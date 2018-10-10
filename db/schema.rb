@@ -30,11 +30,12 @@ ActiveRecord::Schema.define(version: 2018_09_08_034928) do
   end
 
   create_table "bodies", force: :cascade do |t|
-    t.string "nickname", default: "", null: false
-    t.bigint "family_id"
+    t.string "nickname", default: "NO_NICKNAME", null: false
+    t.bigint "family_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["family_id"], name: "index_bodies_on_family_id"
+    t.index ["nickname", "family_id"], name: "index_bodies_on_nickname_and_family_id", unique: true
   end
 
   create_table "families", force: :cascade do |t|
@@ -44,10 +45,10 @@ ActiveRecord::Schema.define(version: 2018_09_08_034928) do
 
   create_table "notes", force: :cascade do |t|
     t.text "detail"
-    t.bigint "body_id"
+    t.bigint "body_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "noted_at"
+    t.datetime "noted_at", null: false
     t.index ["body_id"], name: "index_notes_on_body_id"
   end
 
@@ -75,8 +76,8 @@ ActiveRecord::Schema.define(version: 2018_09_08_034928) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "nickname", default: "", null: false
-    t.bigint "family_id"
+    t.string "nickname", default: "NO_NICKNAME", null: false
+    t.bigint "family_id", null: false
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -95,8 +96,8 @@ ActiveRecord::Schema.define(version: 2018_09_08_034928) do
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
