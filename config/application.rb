@@ -25,5 +25,7 @@ module KaradaMemo
     end
 
     config.i18n.default_locale = :ja
+    # Rack Dev Mark
+    config.rack_dev_mark.enable = true
   end
 end
