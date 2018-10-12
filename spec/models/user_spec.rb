@@ -47,9 +47,8 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザーを作成する' do
     it 'ユーザーモデルが作られると同時に新しい家族モデルが作ること' do
-      user = FactoryBot.build(:user)
+      user = FactoryBot.create(:user)
       expect(user.family).not_to be_nil
-      expect(user.family.id).to be_nil
     end
 
     it 'ユーザーモデルが検索で取得されたときは既存の家族モデルを関連付けること' do
