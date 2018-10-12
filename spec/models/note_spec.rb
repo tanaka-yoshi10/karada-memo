@@ -27,7 +27,9 @@ RSpec.describe Note, type: :model do
   describe 'ノートを作成する' do
     context '記録日時が未指定のとき' do
       it '現在時刻を記録日時に設定すること' do
-        note = Note.new(FactoryBot.attributes_for(:note, noted_at: nil))
+        attrs = FactoryBot.attributes_for(:note)
+        attrs.delete(:noted_at)
+        note = Note.new(attrs)
         expect(note.noted_at).not_to be_nil
       end
     end
