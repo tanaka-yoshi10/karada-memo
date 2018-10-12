@@ -3,11 +3,9 @@ class Note < ApplicationRecord
   paginates_per 6
 
   belongs_to :body
+  attribute :noted_at, :datetime, default: -> { Time.current }
   validates :detail, length: { maximum: DETAIL_LENGTH_MAXIMUM }
   validates :noted_at, presence: true
-
-  after_initialize :set_default_noted_at,
-                   if: ->(note) { note.respond_to?(:noted_at) && note.noted_at.blank? }
 
   default_scope { order(noted_at: :desc) }
 
@@ -19,11 +17,5 @@ class Note < ApplicationRecord
 
   scope :latest, ->(count) do
     first(count)
-  end
-
-  private
-
-  def set_default_noted_at
-    self.noted_at = Time.current
   end
 end
