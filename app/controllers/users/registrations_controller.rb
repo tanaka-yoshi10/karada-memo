@@ -19,6 +19,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    profile_path
+    edit_user_registration_path
   end
 end
