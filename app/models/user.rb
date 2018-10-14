@@ -9,7 +9,6 @@ class User < ApplicationRecord
                    if: ->(user) { user.respond_to?(:family_id) && user.family.blank? }
   after_destroy :destroy_family!,
                 unless: ->(user) { user.family.member? }
-  default_scope { order(:nickname) }
   scope :joined_to_family, -> { no_active_invitation }
   scope :invited_to_family, -> { invitation_not_accepted }
 

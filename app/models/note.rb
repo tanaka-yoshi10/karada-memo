@@ -6,7 +6,6 @@ class Note < ApplicationRecord
   validates :noted_at, presence: true
   after_initialize :set_default_noted_at,
                    if: ->(note) { note.respond_to?(:noted_at) && note.noted_at.blank? }
-  default_scope { order(noted_at: :desc) }
 
   scope :noted_in, ->(year) do
     return if year.blank?
@@ -15,7 +14,7 @@ class Note < ApplicationRecord
   end
 
   scope :latest, ->(count) do
-    first(count)
+    reorder(noted_at: :desc).first(count)
   end
 
   private
