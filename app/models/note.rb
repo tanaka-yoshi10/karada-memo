@@ -14,6 +14,6 @@ class Note < ApplicationRecord
   end
 
   scope :latest, ->(count) do
-    first(count)
+    reorder(noted_at: :desc).first(count)
   end
 end

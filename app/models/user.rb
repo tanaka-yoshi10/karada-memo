@@ -9,7 +9,6 @@ class User < ApplicationRecord
                     unless: ->(user) { user.family.present? }
   after_destroy :destroy_family!,
                 unless: ->(user) { user.family.member? }
-  default_scope { order(:nickname) }
   scope :joined_to_family, -> { no_active_invitation }
   scope :invited_to_family, -> { invitation_not_accepted }
 

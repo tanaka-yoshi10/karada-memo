@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   before_action :set_year, only: :index
 
   def index
-    @notes = @body.notes.noted_in(@year).page params[:page]
+    @notes = @body.notes.order(noted_at: :desc).noted_in(@year).page params[:page]
   end
 
   def show
