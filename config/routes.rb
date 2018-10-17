@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :selections, only: :index
   end
   resources :bodies, except: :show do
-    resources :notes, shallow: true
+    resources :notes
   end
 
   ActiveAdmin.routes(self)
