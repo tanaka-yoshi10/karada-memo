@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_body, only: %i[index new create]
+  before_action :set_body
   before_action :set_note, only: %i[show edit update destroy]
   before_action :set_year, only: :index
 
@@ -21,7 +21,7 @@ class NotesController < ApplicationController
   def create
     @note = @body.notes.build(note_params)
     if @note.save
-      redirect_to @note, success: 'メモを作成しました'
+      redirect_to [@note.body, @note], success: 'メモを作成しました'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class NotesController < ApplicationController
   def update
     @note.body = find_my_own_body(params[:note][:body_id])
     if @note.update(note_params)
-      redirect_to @note, success: 'メモを更新しました'
+      redirect_to [@note.body, @note], success: 'メモを更新しました'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class NotesController < ApplicationController
   end
 
   def set_note
-    @note = current_user.family.notes.find(params[:id])
+    @note = @body.notes.find(params[:id])
   end
 
   def set_year
